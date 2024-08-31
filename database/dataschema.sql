@@ -1,0 +1,23 @@
+DROP DATABASE IF EXISTS `task_manager`;
+CREATE DATABASE `task_manager`;
+USE `task_manager`;
+
+CREATE TABLE users (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    firebase_uid VARCHAR(255) NOT NULL UNIQUE,
+	username VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE task (
+	task_id INT AUTO_INCREMENT PRIMARY KEY, 
+    user_id INT NOT NULL,
+    task_name VARCHAR(255), 
+    task_detail TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- ALTER TABLE task 
+-- ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
